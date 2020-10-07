@@ -1,0 +1,50 @@
+﻿@model HealthcareWebApplication.ViewModels.OrderSiteMedicationViewModel
+
+@{
+    ViewBag.Title = "OrderMedicationForSites";
+}
+
+<h2>OrderMedicationForSites</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>SiteMedicationModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.SiteMedication.MedicationId, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.DropDownListFor(x => Model.SiteMedication.MedicationId, new SelectList(Model.Medication, "MedicationId", "MedicationId"), "Select Medication Id", htmlAttributes: new { @class = "form-control", id = "Country" })
+				@Html.ValidationMessageFor(x => x.SiteMedication.MedicationId, "", new { @class = "text-danger" })
+			</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SiteMedication.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SiteMedication.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SiteMedication.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(Model => Model.SiteMedication.SiteId)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

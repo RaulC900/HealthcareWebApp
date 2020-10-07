@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HealthcareWebApplication.Models.SubjectModel>
+
+@{
+    ViewBag.Title = "ViewSubjects";
+}
+
+<h2>ViewSubjects</h2>
+
+<p>
+    @Html.ActionLink("Add New Subject", "AddSubject")
+</p>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.SubjectNumber)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Gender)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.DateOfBirth)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.SiteNumber)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.MedicationUnits)
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteNumber)
+        </td>
+		<td>
+            @Html.DisplayFor(modelItem => item.MedicationUnits)
+        </td>
+		<td>
+			@Html.ActionLink("Edit", "EditSubject", new { param1 = item.SubjectNumber, param2 = item.Gender, 
+															param3 = item.DateOfBirth, param4 = item.SiteNumber }) |
+			@Html.ActionLink("Order Medication", "OrderMedicationForSubjects", new { id = item.SubjectNumber, role = item.SiteNumber }) |
+			@Html.ActionLink("Delete", "DeleteSubject", new { param1 = item.SubjectNumber })
+		</td>
+    </tr>
+}
+
+</table>

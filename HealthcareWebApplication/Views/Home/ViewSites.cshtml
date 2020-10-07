@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HealthcareWebApplication.Models.SiteModel>
+
+@{
+	ViewBag.Title = "ViewSites";
+}
+
+<h2>ViewSites</h2>
+
+<p>
+	@Html.ActionLink("Add Site", "AddSite")
+</p>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.SiteNumber)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Address)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.SiteDoctor)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.MedicationUnits)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.SiteNumber)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Address)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.SiteDoctor)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.MedicationUnits)
+			</td>
+			<td>
+				@Html.ActionLink("Edit", "EditSite", new { param1 = item.SiteNumber, param2 = item.Address, 
+															param3 = item.SiteDoctor }) |
+				@Html.ActionLink("Order Medication For Site", "OrderMedicationForSites", new { id = item.SiteNumber }) |
+				@Html.ActionLink("Delete", "DeleteSite", new { param1 = item.SiteNumber })
+			</td>
+		</tr>
+	}
+
+</table>
